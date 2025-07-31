@@ -69,6 +69,7 @@ class SignupFragment : Fragment() {
                         val newUser = user(username = username, password = password)
                         userDao.insertUser(newUser)
                         PreferenceHelper.setLoggedIn(requireContext(), true)
+                        PreferenceHelper.setUserName(requireContext(), username)
 
 
                         startActivity(Intent(requireContext(), MainActivity::class.java))

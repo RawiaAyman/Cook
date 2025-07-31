@@ -28,4 +28,16 @@ object PreferenceHelper {
     fun clearAll(context: Context) {
         getPrefs(context).edit().clear().apply()
     }
+
+    private const val KEY_USER_NAME = "user_name"  // Add this line near other keys
+
+    fun setUserName(context: Context, name: String) {
+        getPrefs(context).edit()
+            .putString(KEY_USER_NAME, name)
+            .apply()
+    }
+
+    fun getUserName(context: Context): String {
+        return getPrefs(context).getString(KEY_USER_NAME, "User") ?: "User"
+    }
 }

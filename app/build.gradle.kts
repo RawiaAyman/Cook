@@ -1,8 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.navigation.safeargs) // ✅ Keep only this OR use manual id
+    id("androidx.navigation.safeargs.kotlin") // ✅ Keep this
+
     id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -56,7 +58,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
 
-    // ✅ Navigation Component (safe args compatible)
+    // ✅ Navigation Component (with Safe Args)
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
 
@@ -69,7 +71,7 @@ dependencies {
     // ✅ Retrofit + Moshi + Gson
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // optional if you mix
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // optional
 
     // ✅ OkHttp + Moshi
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
@@ -81,6 +83,7 @@ dependencies {
 
     // ✅ Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     // ✅ Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

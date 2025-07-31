@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentSplashBinding
 import com.example.myapplication.ui.MainActivity
 import com.example.myapplication.ui.utils.PreferenceHelper
+import com.example.myapplication.R
 
 class SplashFragment : Fragment() {
 
@@ -31,16 +31,18 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (PreferenceHelper.isLoggedIn(requireContext())) {
+            if (!isAdded) return@postDelayed
+
+            val isLoggedIn = PreferenceHelper.isLoggedIn(requireContext())
+
+            if (isLoggedIn) {
                 val intent = Intent(requireContext(), MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 requireActivity().finish()
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }
         }, 2000)
-
     }
 
     override fun onDestroyView() {
