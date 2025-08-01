@@ -5,5 +5,15 @@
     <color name="dishdash_red">#F85A63</color>
     <color name="light_background">#FDECEC</color>
     <color name="circle_white_bg">#FFFFFF</color>
+    <!-- Primary Colors -->
+    <color name="purple_500">#F85A63</color>
+    <color name="purple_700">#F85A63</color>
 
+
+    <color name="background_light_pink">#FFE6E6</color>
+    <color name="input_field_background">#FFCDD2</color>
+    <color name="input_hint_color">#DBABB0</color>
+
+    <!-- Error -->
+    <color name="error_red">#B00020</color>
 </resources>
