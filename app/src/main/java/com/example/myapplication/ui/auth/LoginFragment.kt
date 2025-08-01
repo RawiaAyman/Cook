@@ -66,6 +66,7 @@ class LoginFragment : Fragment() {
 
                     if (user != null && user.password == password) {
                         PreferenceHelper.setLoggedIn(requireContext(), true)
+                        PreferenceHelper.setUserName(requireContext(), user.username) // ✅ Store username
 
                         startActivity(Intent(requireContext(), MainActivity::class.java))
                         requireActivity().finish()

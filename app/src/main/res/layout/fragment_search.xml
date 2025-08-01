@@ -14,7 +14,6 @@
         android:padding="16dp"
         android:gravity="center_horizontal">
 
-
         <!-- Search Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -144,5 +143,6 @@
             android:layout_marginTop="16dp"
             android:nestedScrollingEnabled="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
