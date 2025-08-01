@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var welcomeText: TextView
-    private val mealList = mutableListOf<com.example.myapplication.Data.model.Meal>()
+    private lateinit var mealAdapter: MealAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,18 +28,30 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerView = view.findViewById(R.id.mealRecyclerView)
         welcomeText = view.findViewById(R.id.welcomeTitle)
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Initialize adapter
+        mealAdapter = MealAdapter { meal ->
+            val id = meal.idMeal
+            if (!id.isNullOrEmpty()) {
+                navigateToRecipeDetail(id)
+            } else {
+                showToast("Invalid meal data")
+            }
+        }
+
+        recyclerView.adapter = mealAdapter
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Show username
         val username = PreferenceHelper.getUserName(requireContext())
         welcomeText.text = "Hello, $username"
 
-        // Load meals from API
         fetchMeals()
     }
 
@@ -57,19 +69,7 @@ class HomeFragment : Fragment() {
 
                 val meals = response.meals
                 if (!meals.isNullOrEmpty()) {
-                    mealList.clear()
-                    mealList.addAll(meals)
-
-                    // Set adapter with meals
-                    recyclerView.adapter = MealAdapter(mealList) { meal ->
-                        val id = meal.idMeal
-                        if (!id.isNullOrEmpty()) {
-                            navigateToRecipeDetail(id)
-                        } else {
-                            showToast("Invalid meal data")
-                        }
-                    }
-
+                    mealAdapter.submitList(meals)
                 } else {
                     Log.w("HomeFragment", "No meals found for '$randomLetter'")
                     showToast("No meals found")
