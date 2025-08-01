@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentSearchBinding
-import com.example.myapplication.network.RetrofitHelper
-import com.example.myapplication.ui.MealAdapter
+import com.example.myapplication.Data.network.RetrofitHelper
+import com.example.myapplication.Data.adapter.MealAdapter
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {

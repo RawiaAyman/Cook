@@ -1,10 +1,9 @@
-package com.example.myapplication.ui
+package com.example.myapplication
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.Data.model.Meal
 import com.example.myapplication.Data.model.MealsResponse
-import com.example.myapplication.network.APIService
+import com.example.myapplication.Data.network.APIService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

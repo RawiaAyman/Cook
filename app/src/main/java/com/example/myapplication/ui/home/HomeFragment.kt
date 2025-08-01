@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -11,7 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.network.RetrofitHelper
+import com.example.myapplication.Data.network.RetrofitHelper
+import com.example.myapplication.Data.adapter.MealAdapter
 import com.example.myapplication.ui.utils.PreferenceHelper
 import kotlinx.coroutines.launch
 

@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
-import com.example.myapplication.network.RetrofitHelper
+import com.example.myapplication.Data.network.RetrofitHelper
 import kotlinx.coroutines.launch
 
 class RecipeDetailFragment : Fragment() {

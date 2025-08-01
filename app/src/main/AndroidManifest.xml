@@ -18,7 +18,7 @@
 
         <!-- Launcher: Start from AuthActivity -->
         <activity
-            android:name=".ui.AuthActivity"
+            android:name=".ui.auth.AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
