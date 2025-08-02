@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentSplashBinding
-import com.example.myapplication.ui.MainActivity
+import com.example.myapplication.MainActivity
 import com.example.myapplication.ui.utils.PreferenceHelper
 import com.example.myapplication.R
 

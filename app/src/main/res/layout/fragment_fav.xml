@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_tertiary20"
-    tools:context=".ui.Fav">
+    android:background="@color/light_background"
+    tools:context=".ui.favorite.FavoriteFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
+        android:layout_margin="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fav Fragment"
-        android:textSize="26dp"
-        android:textColor="@color/white"
-        android:layout_gravity="center"/>
+        android:text="well, well, hello there!"
+        android:textColor="@color/dishdash_red"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favRV"
+        android:layout_marginVertical="20dp"
+        tools:listitem="@layout/fav_list_item"
+        android:layout_width="match_parent"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_height="0dp"
+        app:spanCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

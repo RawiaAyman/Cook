@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
-        <!-- ممكن تضيف ألوان إضافية هنا لو حبيت -->
+        <item name="android:statusBarColor">@color/dishdash_red</item>
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
