@@ -63,8 +63,6 @@ class HomeFragment : Fragment() {
 
             try {
                 val response = RetrofitHelper.api.listMealsByFirstLetter(
-                    version = "v1",
-                    apiKey = "1",
                     letter = randomLetter.toString()
                 )
 

@@ -18,8 +18,9 @@
 
         <!-- Launcher: Start from AuthActivity -->
         <activity
-            android:name=".ui.auth.AuthActivity"
-            android:exported="true">
+            android:name=".ui.AuthActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MyApplication">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

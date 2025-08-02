@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_background"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/group"
+            android:backgroundTint="@color/dishdash_red"
+            android:contentDescription="Team logo"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Meet the Creators"
+            android:textColor="@color/dishdash_red"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This app was proudly created by a passionate team of developers who believe in simplifying cooking through smart, intuitive design. Our team collaborated on every aspect from the user interface to database handling to make this experience smooth and inspiring."
+            android:textColor="#4B4B4B"
+            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We hope you enjoy using it as much as we enjoyed building it!"
+            android:textColor="#373737"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:gravity="center_horizontal" />
+
+    </LinearLayout>
+</ScrollView>

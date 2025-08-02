@@ -34,6 +34,7 @@ class MealAdapter(private val onClick: (Meal) -> Unit) :
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
+
 }
 
 class MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
@@ -41,5 +42,4 @@ class MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
         oldItem.idMeal == newItem.idMeal
 
     override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean =
-        oldItem == newItem
-}
+        oldItem == newItem}

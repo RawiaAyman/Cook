@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentSearchBinding
-import com.example.myapplication.Data.network.RetrofitHelper
-import com.example.myapplication.Data.adapter.MealAdapter
+import com.example.myapplication.network.RetrofitHelper
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -22,9 +22,11 @@ class SearchFragment : Fragment() {
     private lateinit var viewModel: SearchViewModel
     private lateinit var mealAdapter: MealAdapter
 
-    private val searchTypes = listOf("Name", "Category", "Area", "Ingredients")
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,16 +39,42 @@ class SearchFragment : Fragment() {
 
         mealAdapter = MealAdapter { meal ->
             meal.idMeal?.let {
-                val action = SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(it)
+                val action =
+                    SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(it)
                 findNavController().navigate(action)
             }
         }
 
         binding.mealRecyclerView.adapter = mealAdapter
-        setupSearchTypeDropdown()
+
+        binding.modeChips.setOnCheckedChangeListener { group, checkedId ->
+            val type = when (checkedId) {
+                R.id.chipName -> "Name"
+                R.id.chipCategory -> "Category"
+                R.id.chipArea -> "Area"
+                R.id.chipIngredient -> "Ingredients"
+                else -> "Name"
+            }
+
+            if (type != "Name") {
+                viewModel.loadOptions(type) { options ->
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_dropdown_item_1line,
+                        options
+                    )
+                    binding.searchInput.setAdapter(adapter)
+                    binding.searchInput.showDropDown()
+                }
+            } else {
+                // Clear suggestions
+                binding.searchInput.setAdapter(null)
+            }
+        }
 
         binding.searchInput.doAfterTextChanged {
-            viewModel.search(binding.searchTypeDropdown.text.toString(), it.toString())
+            val selectedType = getSelectedSearchType()
+            viewModel.search(selectedType, it.toString())
         }
 
         lifecycleScope.launch {
@@ -56,18 +84,12 @@ class SearchFragment : Fragment() {
         }
     }
 
-    private fun setupSearchTypeDropdown() {
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, searchTypes)
-        binding.searchTypeDropdown.setAdapter(adapter)
-
-        binding.searchTypeDropdown.setOnItemClickListener { _, _, _, _ ->
-            val type = binding.searchTypeDropdown.text.toString()
-            if (type != "Name") {
-                viewModel.loadOptions(type) { options ->
-                    val optAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, options)
-                    binding.searchInput.setAdapter(optAdapter)
-                }
-            }
+    private fun getSelectedSearchType(): String {
+        return when (binding.modeChips.checkedChipId) {
+            R.id.chipCategory -> "Category"
+            R.id.chipArea -> "Area"
+            R.id.chipIngredient -> "Ingredients"
+            else -> "Name"
         }
     }
 
