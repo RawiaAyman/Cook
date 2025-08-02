@@ -38,7 +38,23 @@ class MainActivity : AppCompatActivity() {
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        bottomNav.setupWithNavController(navController)
+        //bottomNav.setupWithNavController(navController)
+        bottomNav.setOnItemSelectedListener { item ->
+            val destinationId = when (item.itemId) {
+                R.id.homeFragment -> R.id.homeFragment
+                R.id.searchFragment -> R.id.searchFragment
+                R.id.favFragment -> R.id.favFragment
+                else -> return@setOnItemSelectedListener false
+            }
+
+            navController.popBackStack(navController.graph.startDestinationId, false)
+
+            if (navController.currentDestination?.id != destinationId) {
+                navController.navigate(destinationId)
+            }
+
+            true
+        }
     }
 
     // Enable up button behavior
