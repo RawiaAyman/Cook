@@ -1,6 +1,5 @@
 package com.example.myapplication.ui.detail
 
-import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +18,6 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.myapplication.Data.local.database.AppDatabase
 import com.example.myapplication.Data.model.favourite
-import com.example.myapplication.Data.model.user
 import com.example.myapplication.R
 import com.example.myapplication.Data.network.RetrofitHelper
 import com.example.myapplication.Data.repo.FavRepository
@@ -126,6 +124,7 @@ class RecipeDetailFragment : Fragment() {
                             )
                             Log.d("DEBUG", "user: ${PreferenceHelper.getUserName(requireContext())}")
                             fav.insertFav(favourite(meal.idMeal,PreferenceHelper.getUserName(requireContext())))
+                            Toast.makeText(requireContext(), "added to favorites", Toast.LENGTH_SHORT).show()
 
                         }
                         catch (e: SQLiteConstraintException){

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.ui.MainActivity
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.Data.local.database.AppDatabase
 import com.example.myapplication.databinding.FragmentLoginBinding

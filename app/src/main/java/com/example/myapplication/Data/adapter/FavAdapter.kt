@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.example.myapplication.Data.model.Meal
 import com.example.myapplication.databinding.FavListItemBinding
 
-class FavAdapter(private val onClick: (Meal) -> Unit) :
+class FavAdapter(private val onClick: (Meal) -> Unit,
+                 private val onLongClick: (Meal) -> Unit) :
     ListAdapter<Meal, FavAdapter.FavViewHolder>(FavDiffCallback()) {
 
     inner class FavViewHolder(private val binding: FavListItemBinding) :
@@ -23,6 +24,10 @@ class FavAdapter(private val onClick: (Meal) -> Unit) :
 
             binding.root.setOnClickListener {
                 onClick(meal)
+            }
+            binding.root.setOnLongClickListener {
+                onLongClick(meal)
+                true
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

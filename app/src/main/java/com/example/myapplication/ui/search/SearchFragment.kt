@@ -1,4 +1,4 @@
-package com.example.myapplication.ui
+package com.example.myapplication.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.Data.adapter.MealAdapter
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentSearchBinding
-import com.example.myapplication.network.RetrofitHelper
+import com.example.myapplication.Data.network.RetrofitHelper
 import kotlinx.coroutines.launch
 
 class SearchFragment : Fragment() {
@@ -38,10 +39,10 @@ class SearchFragment : Fragment() {
         )[SearchViewModel::class.java]
 
         mealAdapter = MealAdapter { meal ->
-            meal.idMeal?.let {
+            meal.idMeal.let {
                 val action =
                     SearchFragmentDirections.actionSearchFragmentToRecipeDetailFragment(it)
-                findNavController().navigate(action)
+                    findNavController().navigate(action)
             }
         }
 
