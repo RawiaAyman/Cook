@@ -5,9 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 @Entity(tableName = "recipes")
 data class Meal(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
-
-    @Json(name = "idMeal") val idMeal: String?,
+    @PrimaryKey
+    @Json(name = "idMeal") val idMeal: String,
     @Json(name = "strMeal") val strMeal: String?,
     @Json(name = "strCategory") val strCategory: String?,
     @Json(name = "strArea") val strArea: String?,

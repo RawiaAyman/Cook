@@ -3,6 +3,11 @@
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorOnPrimary">@color/dishdash_red</item>
+        <item name="android:statusBarColor">@color/dishdash_red</item>
+
+
+
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />

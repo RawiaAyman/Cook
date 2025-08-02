@@ -9,10 +9,10 @@ import com.example.myapplication.Data.model.favourite
 import com.example.myapplication.Data.repo.FavRepository
 import kotlinx.coroutines.launch
 
-class favoriteViewmodel(val repository: FavRepository): ViewModel() {
+class FavoriteViewmodel(val repository: FavRepository): ViewModel() {
     private val _data = MutableLiveData<List<Meal>>()
     private val _recipe = MutableLiveData<Meal>()
-    private val data : LiveData<List<Meal>>
+    val data : LiveData<List<Meal>>
         get() = _data
     private val recipe : LiveData<Meal>
         get() = _recipe
@@ -23,7 +23,7 @@ class favoriteViewmodel(val repository: FavRepository): ViewModel() {
         }
     }
 
-    fun getbyId(username: String, id: Int){
+    fun getbyId(username: String, id: String){
         viewModelScope.launch {
             _recipe.value = repository.getbyId(username, id)
         }

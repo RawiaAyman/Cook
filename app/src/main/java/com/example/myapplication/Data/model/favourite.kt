@@ -5,14 +5,14 @@ import androidx.room.ForeignKey
 
 @Entity(
     tableName = "favourites",
-    primaryKeys = ["id", "username"],
+    primaryKeys = ["idMeal", "username"],
     foreignKeys = [
-        ForeignKey(entity = Meal::class, parentColumns = ["id"], childColumns = ["id"]),
+        ForeignKey(entity = Meal::class, parentColumns = ["idMeal"], childColumns = ["idMeal"]),
         ForeignKey(entity = user::class, parentColumns = ["username"], childColumns = ["username"])
     ]
 )
 data class favourite(
-    val id: Int,
+    val idMeal: String,
     val username: String
 )
 

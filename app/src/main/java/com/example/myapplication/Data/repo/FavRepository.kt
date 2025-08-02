@@ -9,7 +9,7 @@ class FavRepository(val favDao: FavDao) {
         return favDao.getAllFavouritesOfUser(username)
     }
 
-    suspend fun getbyId(username: String, id: Int): Meal? {
+    suspend fun getbyId(username: String, id: String): Meal? {
         return favDao.getFavouriteRecipeByUserAndRecipeId(username, id)
     }
 

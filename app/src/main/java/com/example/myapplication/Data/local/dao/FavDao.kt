@@ -12,17 +12,17 @@ import com.example.myapplication.Data.model.Meal
 interface FavDao {
     @Query("""
     SELECT recipes.* FROM recipes
-    INNER JOIN favourites ON recipes.id = favourites.id
+    INNER JOIN favourites ON recipes.idMeal = favourites.idMeal
     WHERE favourites.username = :username
     """)
     suspend fun getAllFavouritesOfUser(username: String): List<Meal>
 
     @Query("""
     SELECT recipes.* FROM recipes
-    INNER JOIN favourites ON recipes.id = favourites.id
-    WHERE favourites.username = :username AND recipes.id = :recipeId
+    INNER JOIN favourites ON recipes.idMeal = favourites.idMeal
+    WHERE favourites.username = :username AND recipes.idMeal= :recipeId
     """)
-    suspend fun getFavouriteRecipeByUserAndRecipeId(username: String, recipeId: Int): Meal?
+    suspend fun getFavouriteRecipeByUserAndRecipeId(username: String, recipeId: String): Meal?
 
     @Insert
     suspend fun insertFav(fav: favourite)

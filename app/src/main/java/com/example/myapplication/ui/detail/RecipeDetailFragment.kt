@@ -1,6 +1,9 @@
 package com.example.myapplication.ui.detail
 
+import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +12,19 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.myapplication.Data.local.database.AppDatabase
+import com.example.myapplication.Data.model.favourite
+import com.example.myapplication.Data.model.user
 import com.example.myapplication.R
 import com.example.myapplication.Data.network.RetrofitHelper
+import com.example.myapplication.Data.repo.FavRepository
+import com.example.myapplication.Data.repo.RecipeRepository
+import com.example.myapplication.ui.utils.PreferenceHelper
 import kotlinx.coroutines.launch
 
 class RecipeDetailFragment : Fragment() {
@@ -103,6 +113,31 @@ class RecipeDetailFragment : Fragment() {
                 }
 
                 // favoriteButton logic → left for your teammate
+                favoriteButton.setOnClickListener {
+                    lifecycleScope.launch {
+                        try {
+                            val fav = FavRepository(AppDatabase.getInstance(requireContext()).favDao())
+                            val recipe = RecipeRepository(AppDatabase.getInstance(requireContext()).recipeDao())
+                            Log.d("DEBUG", "Before insert: meal.id = ${meal.idMeal}")
+                            recipe.insertRecipe(meal)
+                            Log.d("DEBUG",
+                                AppDatabase.getInstance(requireContext()).userDao().getUser(PreferenceHelper.getUserName(requireContext()))
+                                    .toString()
+                            )
+                            Log.d("DEBUG", "user: ${PreferenceHelper.getUserName(requireContext())}")
+                            fav.insertFav(favourite(meal.idMeal,PreferenceHelper.getUserName(requireContext())))
+
+                        }
+                        catch (e: SQLiteConstraintException){
+                            if(e.message?.contains("UNIQUE constraint failed") == true)
+                                Toast.makeText(requireContext(), "already added", Toast.LENGTH_SHORT).show()
+                        }
+                        catch (e: Exception) {
+                            Toast.makeText(requireContext(), "failed to add", Toast.LENGTH_SHORT).show()
+                            e.printStackTrace()
+                        }
+                    }
+                }
 
             } catch (e: Exception) {
                 e.printStackTrace()

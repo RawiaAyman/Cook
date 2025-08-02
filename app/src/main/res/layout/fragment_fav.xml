@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/light_background"
-    tools:context=".ui.favorite.Fav">
+    tools:context=".ui.favorite.FavoriteFragment">
 
     <TextView
         android:id="@+id/title"
         android:layout_margin="50dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello :)"
+        android:text="well, well, hello there!"
         android:textColor="@color/dishdash_red"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -20,9 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_margin="20dp"
+        android:id="@+id/favRV"
+        android:layout_marginVertical="20dp"
+        tools:listitem="@layout/fav_list_item"
         android:layout_width="match_parent"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:layout_height="0dp"
+        app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
