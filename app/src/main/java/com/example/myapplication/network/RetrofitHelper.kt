@@ -10,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 object RetrofitHelper {
 
-    private const val BASE_URL = "https://www.themealdb.com/api/json/"
+    private const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
     private val moshi: Moshi by lazy {
         Moshi.Builder()

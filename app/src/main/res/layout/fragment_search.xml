@@ -5,45 +5,144 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:padding="16dp">
+    android:background="#FFE6E6">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:padding="16dp"
         android:gravity="center_horizontal">
-
-        <!-- Search Type Dropdown -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Search by"
-            android:layout_marginBottom="8dp">
-
-            <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/searchTypeDropdown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Search Input -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Search"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="8dp"
+            app:boxBackgroundMode="filled"
+            app:boxCornerRadiusTopStart="50dp"
+            app:boxCornerRadiusTopEnd="50dp"
+            app:boxCornerRadiusBottomStart="50dp"
+            app:boxCornerRadiusBottomEnd="50dp"
+            app:boxBackgroundColor="#FFCDD2"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:textColorHint="#DBABB0">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/searchInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="43dp"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                style="@style/DropdownListStyle"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Meal List -->
+        <!-- Chips -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/modeChips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:checkedChip="@id/chipName">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:checkable="true"
+                app:shapeAppearanceOverlay="@style/RoundedChip"
+                app:chipStrokeWidth="0dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                android:backgroundTint="@color/chip_background_color"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:checkable="true"
+                app:shapeAppearanceOverlay="@style/RoundedChip"
+                app:chipStrokeWidth="0dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                android:backgroundTint="@color/chip_background_color"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Area"
+                android:checkable="true"
+                app:shapeAppearanceOverlay="@style/RoundedChip"
+                app:chipStrokeWidth="0dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                android:backgroundTint="@color/chip_background_color"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient"
+                android:checkable="true"
+                app:shapeAppearanceOverlay="@style/RoundedChip"
+                app:chipStrokeWidth="0dp"
+                app:boxCornerRadiusTopStart="20dp"
+                app:boxCornerRadiusTopEnd="20dp"
+                app:boxCornerRadiusBottomStart="20dp"
+                app:boxCornerRadiusBottomEnd="20dp"
+                android:backgroundTint="@color/chip_background_color"/>
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Loading -->
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:visibility="gone" />
+
+        <!-- No Results Text -->
+        <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/no_results"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone" />
+
+        <!-- Error Message -->
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorError"
+            android:padding="12dp"
+            android:visibility="gone" />
+
+        <!-- Recycler View -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mealRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -2,7 +2,6 @@ package com.example.myapplication.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.Data.model.Meal
 import com.example.myapplication.Data.model.MealsResponse
 import com.example.myapplication.network.APIService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,15 +30,21 @@ class SearchViewModel(private val api: APIService) : ViewModel() {
 
     fun loadOptions(type: String, callback: (List<String>) -> Unit) {
         viewModelScope.launch {
-            val result = when (type) {
-                "Category" -> api.listCategoriesNames().meals
-                "Area" -> api.listAreasNames().meals
-                "Ingredients" -> api.listIngredientsNames().meals
+            val names = when (type) {
+                "Category" -> {
+                    val result = api.listCategoriesNames().meals
+                    result?.mapNotNull { it.strCategory } ?: emptyList()
+                }
+                "Area" -> {
+                    val result = api.listAreasNames().meals
+                    result?.mapNotNull { it.strArea } ?: emptyList()
+                }
+                "Ingredients" -> {
+                    val result = api.listIngredientsNames().meals
+                    result?.mapNotNull { it.strIngredient } ?: emptyList()
+                }
                 else -> emptyList()
             }
-            val names = result?.mapNotNull {
-                it.strCategory ?: it.strArea ?: it.strMeal
-            } ?: emptyList()
             callback(names)
         }
     }
