@@ -42,4 +42,4 @@ class MealDiffCallback : DiffUtil.ItemCallback<Meal>() {
         oldItem.idMeal == newItem.idMeal
 
     override fun areContentsTheSame(oldItem: Meal, newItem: Meal): Boolean =
-        oldItem == newItem
+        oldItem == newItem}

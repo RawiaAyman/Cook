@@ -46,4 +46,11 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.myapplication.ui.AboutFragment"
+        android:label="About the Creator"
+        tools:layout="@layout/fragment_about" />
+
+
 </navigation>

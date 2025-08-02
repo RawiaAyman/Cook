@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.about -> {
-                Toast.makeText(this, "About the Creator clicked", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.aboutFragment)
                 true
             }
             R.id.signout -> {
